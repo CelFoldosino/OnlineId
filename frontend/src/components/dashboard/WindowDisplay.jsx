@@ -21,6 +21,7 @@ const idLost = React.lazy(() => import("./windows/admin/id-lost/idLost"));
 const ReportIdLost = React.lazy(() =>
   import("./windows/user/report-id-lost/ReportIdLost")
 );
+const AboutUs = React.lazy(() => import("./windows/AboutUs"));
 
 export const WindowDisplay = ({ tab, accountLogin }) => {
   const [display, setDisplay] = useState(null);
@@ -36,12 +37,14 @@ export const WindowDisplay = ({ tab, accountLogin }) => {
         idlost: idLost,
         reports: Reports,
         profile: Setting,
+        aboutUs: AboutUs,
       };
       setDisplay(components[tab] || null);
     } else if (["student", "faculty", "staff"].includes(role)) {
       const employee = {
         profile: UserProfile,
         reportid: ReportIdLost,
+        aboutUs: AboutUs,
       };
       setDisplay(employee[tab] || null);
     } else {

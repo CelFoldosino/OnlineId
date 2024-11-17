@@ -249,7 +249,7 @@ const LogIn = () => {
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        filter: "blur(10px)",
+        filter: "blur(2px)",
         zIndex: -1,
       }}
     >
@@ -261,19 +261,19 @@ const LogIn = () => {
         zIndex={0}
       ></Box>
       <Text
-        fontSize="4xl"
+        fontSize="6xl"
         fontWeight="bold"
         position="absolute"
         top="20px"
         left="20px"
         color="white"
       >
-        Philsca
+        PhilSCA
       </Text>
       <Image
         src={logo}
         alt="Philsca Logo"
-        boxSize="100px"
+        boxSize="200px"
         objectFit="contain"
         position="absolute"
         top="20px"
@@ -320,8 +320,8 @@ const LogIn = () => {
                 }}
               >
                 <option value="student">Student</option>
-                <option value="faculty">Faculty</option>
-                <option value="staff">Staff</option>
+                <option value="faculty">Permanent Employee</option>
+                <option value="staff">COS Employee</option>
                 <option value="admin">Admin</option>
               </Select>
             </FormControl>

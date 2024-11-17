@@ -1,12 +1,31 @@
 /** @format */
 
-import { CheckCircleIcon, EditIcon, Icon, StarIcon, ViewIcon } from "@chakra-ui/icons";
-import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Divider, Flex, HStack, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  CheckCircleIcon,
+  EditIcon,
+  Icon,
+  StarIcon,
+  ViewIcon,
+} from "@chakra-ui/icons";
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Flex,
+  HStack,
+  Heading,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 
-
-const ActiveUser = ({filteredStudents, filteredFaculty, filteredStaff}) => {
+const ActiveUser = ({ filteredStudents, filteredFaculty, filteredStaff }) => {
   return (
-    <Flex gap={5} flexWrap="wrap" flexDir={{base: 'column', md:"row"}}>
+    <Flex gap={5} flexWrap="wrap" flexDir={{ base: "column", md: "row" }}>
       <Card
         borderTopWidth="8px"
         borderTopColor="blue.700"
@@ -29,7 +48,6 @@ const ActiveUser = ({filteredStudents, filteredFaculty, filteredStaff}) => {
           </Flex>
         </CardHeader>
 
-
         <Divider borderColor="gray.200" />
 
         <CardFooter>
@@ -50,7 +68,7 @@ const ActiveUser = ({filteredStudents, filteredFaculty, filteredStaff}) => {
             </Box>
             <Box>
               <Heading as="h2" size="lg">
-                Faculty
+                Permanent Employee
               </Heading>
               <Text fontSize="6xl" color="blue.700">
                 {filteredFaculty.length}
@@ -63,7 +81,7 @@ const ActiveUser = ({filteredStudents, filteredFaculty, filteredStaff}) => {
 
         <CardFooter>
           <HStack>
-            <Text>List of all faculty register in the system</Text>
+            <Text>List of all Permanent Employee register in the system</Text>
           </HStack>
         </CardFooter>
       </Card>
@@ -81,7 +99,7 @@ const ActiveUser = ({filteredStudents, filteredFaculty, filteredStaff}) => {
             </Box>
             <Box>
               <Heading as="h2" size="lg">
-                Staff
+                COS Employee
               </Heading>
               <Text fontSize="6xl" color="blue.700">
                 {filteredStaff.length}
@@ -90,12 +108,11 @@ const ActiveUser = ({filteredStudents, filteredFaculty, filteredStaff}) => {
           </Flex>
         </CardHeader>
 
-
         <Divider borderColor="gray.200" />
 
         <CardFooter>
           <HStack>
-            <Text>List of all staff register in the system</Text>
+            <Text>List of all COS Employee register in the system</Text>
           </HStack>
         </CardFooter>
       </Card>

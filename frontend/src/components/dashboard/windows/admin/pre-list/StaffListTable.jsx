@@ -82,7 +82,7 @@ const StaffListTable = ({
                 <Thead bg="blue.700">
                   <Tr>
                     <Th color="white" fontWeight="bold">
-                      Staff ID
+                      COS ID
                     </Th>
                     <Th color="white" fontWeight="bold">
                       Name
@@ -154,7 +154,7 @@ const StaffListTable = ({
                             fontWeight="bold"
                             color="gray.600"
                           >
-                            No Staff Display
+                            No COS Employee Display
                           </Text>
                         </Flex>
                       </Td>

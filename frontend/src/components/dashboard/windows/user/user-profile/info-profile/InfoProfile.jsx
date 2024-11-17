@@ -36,10 +36,7 @@ import {
   Select,
   Spinner,
 } from "@chakra-ui/react";
-import {
-  fetchAccountAPI,
-  updateAccountAPI,
-} from "../../../../../api/AccountsApi";
+import { updateAccountAPI } from "../../../../../api/AccountsApi";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useData } from "../../../../../context/FetchAccountContext";
@@ -70,7 +67,6 @@ const InfoProfile = ({}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const globalUrl = process.env.REACT_APP_GLOBAL_URL;
   const { userId } = useAuthStore();
 
   const accountLogin = () => {
@@ -148,11 +144,6 @@ const InfoProfile = ({}) => {
         uploadData.signature = signatureUrls[0];
       }
 
-      // Check if uploadData is empty
-      if (Object.keys(uploadData).length === 0) {
-        throw new Error("No files to upload");
-      }
-
       // Send data to the server
       await fetchUploadImage(uploadData);
 
@@ -160,7 +151,6 @@ const InfoProfile = ({}) => {
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
-
     } catch (error) {
       console.error("Upload failed:", error);
     }
@@ -168,14 +158,14 @@ const InfoProfile = ({}) => {
 
   const fetchUploadImage = async (uploadData) => {
     const updatedUser = {
-      picture: uploadData.picture || "",
+      picture: uploadData.picture || user.picture,
       firstname: firstname,
       lastname: lastname,
       middlename: middlename,
       course: course,
       schoolyear: schoolyear,
       birthdate: birthdate,
-      signature: uploadData.signature || "",
+      signature: uploadData.signature || user.signature,
       contactnumber: contactnumber,
       contactpersonnumber: contactPersonNumber,
       contactperson: contactPerson,
@@ -210,27 +200,16 @@ const InfoProfile = ({}) => {
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      //
-      if (images.length < 1 || signature.length < 1) {
-        toast({
-          title: "Please Fill All the Fields",
-          status: "warning",
-          duration: 2000,
-          isClosable: true,
-          position: "bottom",
-        });
-      } else {
-        await uploadFiles();
+      await uploadFiles();
 
-        toast({
-          title: "Updated Successfully",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-          position: "bottom",
-        });
-        onClose();
-      }
+      toast({
+        title: "Updated Successfully",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "bottom",
+      });
+      onClose();
     } catch (error) {
       console.error(error);
       toast({

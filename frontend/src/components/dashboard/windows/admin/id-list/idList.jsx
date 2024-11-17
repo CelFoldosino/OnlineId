@@ -321,8 +321,8 @@ export default function StudIDList() {
             <Tab _selected={{ borderColor: "white" }} color="white">
               STUDENTS
             </Tab>
-            <Tab color="white">STAFFS</Tab>
-            <Tab color="white">FACULTIES</Tab>
+            <Tab color="white">COS EMPLOYEE</Tab>
+            <Tab color="white">PERMANENT EMPLOYEE</Tab>
             <Spacer />
           </TabList>
 

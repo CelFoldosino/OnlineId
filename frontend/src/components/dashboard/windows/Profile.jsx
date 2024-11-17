@@ -26,7 +26,7 @@ import {
 // import ProfileModal from "./ProfileModal";
 import useAuthStore from "../../../modules/auth";
 import { useData } from "../../context/FetchAccountContext";
-import { FiLock, FiUser } from "react-icons/fi";
+import { FiInfo, FiLock, FiUser } from "react-icons/fi";
 import { FaSignOutAlt } from "react-icons/fa";
 import ChangePassword from "./ChangePassword";
 const Profile = ({ handleTabChange }) => {
@@ -83,6 +83,17 @@ const Profile = ({ handleTabChange }) => {
             onClick={() => handleTabChange("profile")}
           >
             Profile
+          </MenuItem>
+          <MenuItem
+            py={3}
+            my={1}
+            bg="blue.600"
+            color="white"
+            _hover={{ bg: "blue.500" }}
+            icon={<FiInfo />}
+            onClick={() => handleTabChange("aboutUs")}
+          >
+            About Us
           </MenuItem>
           <MenuItem
             py={3}

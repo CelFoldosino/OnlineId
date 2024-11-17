@@ -68,7 +68,7 @@ const StaffId = ({
           <Thead bg="blue.700">
             <Tr>
               <Th color="white" fontWeight="bold">
-                Staff ID
+                COS ID
               </Th>
               <Th color="white" fontWeight="bold">
                 Name
@@ -141,7 +141,7 @@ const StaffId = ({
                 <Td colSpan={4}>
                   <Flex justify="center" align="center" minHeight="150px">
                     <Text fontSize="1.5rem" fontWeight="bold" color="gray.600">
-                      No Staffs Display
+                      No COS Employee Display
                     </Text>
                   </Flex>
                 </Td>

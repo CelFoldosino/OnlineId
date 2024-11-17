@@ -65,7 +65,7 @@ const FacultyIdLost = ({
           <Thead bg="blue.700">
             <Tr>
               <Th color="white" fontWeight="bold">
-                Student ID
+                Permanent ID
               </Th>
               <Th color="white" fontWeight="bold">
                 Name
@@ -111,7 +111,7 @@ const FacultyIdLost = ({
                 <Td colSpan={4}>
                   <Flex justify="center" align="center" minHeight="150px">
                     <Text fontSize="1.5rem" fontWeight="bold" color="gray.600">
-                      No Faculty ID Lost Display
+                      No Permanent Employee ID Lost Display
                     </Text>
                   </Flex>
                 </Td>

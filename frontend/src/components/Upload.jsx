@@ -65,7 +65,6 @@ export const Upload = () => {
 
         const res = await axios.post(api, data);
         const secure_url = res.data.secure_url;
-        user.picture = secure_url;
         await fetchUploadImage(secure_url);
       }
 

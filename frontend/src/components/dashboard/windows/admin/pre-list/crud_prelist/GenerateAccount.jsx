@@ -173,8 +173,8 @@ const GenerateAccount = React.memo(({ isOpen, onClose }) => {
                 <FormLabel>Role</FormLabel>
                 <Select value={role} onChange={(e) => setRole(e.target.value)}>
                   <option value="student">Student</option>
-                  <option value="faculty">Faculty</option>
-                  <option value="staff">Staff</option>
+                  <option value="faculty">Permanent Employee</option>
+                  <option value="staff">COS Employee</option>
                 </Select>
               </FormControl>
               <Button

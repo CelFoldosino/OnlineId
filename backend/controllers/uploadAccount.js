@@ -14,9 +14,14 @@ exports.uploadUsers = async (req, res) => {
 
     // Trim the data and map it into an array of users
     const users = sheet.map((row) => ({
-      email: String(row.email).trim() ? String(row.email).trim() : "",
-      password: String(row.password).trim() ? String(row.password).trim() : "",
-      role: row.role ? row.role.trim() : "", // Ensure role is handled
+      schoolid: String(row["School ID"]).trim()
+        ? String(row["School ID"]).trim()
+        : "",
+      email: String(row["Email"]).trim() ? String(row["Email"]).trim() : "",
+      password: String(row["Password"]).trim()
+        ? String(row["Password"]).trim()
+        : "",
+      role: row["Role"] ? row["Role"].trim() : "", // Ensure role is handled
     }));
 
     const existingUsers = []; // Array to collect existing users

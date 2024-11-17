@@ -73,7 +73,7 @@ const FacultyId = ({
           <Thead bg="blue.700">
             <Tr>
               <Th color="white" fontWeight="bold">
-                Faculty ID
+                Permanent ID
               </Th>
               <Th color="white" fontWeight="bold">
                 Name
@@ -146,7 +146,7 @@ const FacultyId = ({
                 <Td colSpan={4}>
                   <Flex justify="center" align="center" minHeight="150px">
                     <Text fontSize="1.5rem" fontWeight="bold" color="gray.600">
-                      No Faculties Display
+                      No Permanent Employee Display
                     </Text>
                   </Flex>
                 </Td>

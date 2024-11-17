@@ -55,7 +55,7 @@ const StaffIdLost = ({
           <Thead bg="blue.700">
             <Tr>
               <Th color="white" fontWeight="bold">
-                Student ID
+                COS ID
               </Th>
               <Th color="white" fontWeight="bold">
                 Name
@@ -101,7 +101,7 @@ const StaffIdLost = ({
                 <Td colSpan={4}>
                   <Flex justify="center" align="center" minHeight="150px">
                     <Text fontSize="1.5rem" fontWeight="bold" color="gray.600">
-                      No Staff ID Lost Display
+                      No COS Employee ID Lost Display
                     </Text>
                   </Flex>
                 </Td>

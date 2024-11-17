@@ -107,8 +107,8 @@ const PreList = () => {
             <Tab _selected={{ borderColor: "white" }} color="white">
               STUDENTS
             </Tab>
-            <Tab color="white">FACULTIES</Tab>
-            <Tab color="white">STAFFS</Tab>
+            <Tab color="white">Permanent Employee</Tab>
+            <Tab color="white">COS Employee</Tab>
             <Spacer />
             {userLogin.roleLevel !== "3" ? (
               <Flex gap={2}>

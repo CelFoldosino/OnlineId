@@ -83,7 +83,7 @@ const InstructorListTable = ({
                 <Thead bg="blue.700">
                   <Tr>
                     <Th color="white" fontWeight="bold">
-                      Faculty ID
+                      Permanent ID
                     </Th>
                     <Th color="white" fontWeight="bold">
                       Name
@@ -155,7 +155,7 @@ const InstructorListTable = ({
                             fontWeight="bold"
                             color="gray.600"
                           >
-                            No Faculty Display
+                            No Permanent Employee Display
                           </Text>
                         </Flex>
                       </Td>
