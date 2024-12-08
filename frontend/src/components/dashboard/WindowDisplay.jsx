@@ -40,7 +40,7 @@ export const WindowDisplay = ({ tab, accountLogin }) => {
         aboutUs: AboutUs,
       };
       setDisplay(components[tab] || null);
-    } else if (["student", "faculty", "staff"].includes(role)) {
+    } else if (["student", "permanent_employee", "cos_employee"].includes(role)) {
       const employee = {
         profile: UserProfile,
         reportid: ReportIdLost,

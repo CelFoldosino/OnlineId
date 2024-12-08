@@ -74,9 +74,9 @@ const InfoProfile = ({}) => {
   };
   const user = accountLogin();
   const fullName = useMemo(() => {
-    const firstName = user?.firstName || "";
+    const firstName = user?.firstname || "";
     const middleName = user?.middlename || "";
-    const lastName = user?.lastName || "";
+    const lastName = user?.lastname || "";
     const suffix = user?.suffix || "";
 
     const name = `${firstName} ${middleName} ${lastName} ${suffix}`.trim();
@@ -270,37 +270,37 @@ const InfoProfile = ({}) => {
                 <ListIcon as={InfoIcon} color="#FFD700" />
                 Email: {user.email}
               </ListItem>
-              {["faculty", "staff"].includes(user.role) && (
+              {["permanent_employee", "cos_employee"].includes(user.role) && (
                 <ListItem>
                   <ListIcon as={InfoIcon} color="#FFD700" />
                   Position: {user.position}
                 </ListItem>
               )}
-              {["faculty", "staff"].includes(user.role) && (
+              {["permanent_employee", "cos_employee"].includes(user.role) && (
                 <ListItem>
                   <ListIcon as={InfoIcon} color="#FFD700" />
                   Designation: {user.designation}
                 </ListItem>
               )}
-              {["faculty", "staff"].includes(user.role) && (
+              {["permanent_employee", "cos_employee"].includes(user.role) && (
                 <ListItem>
                   <ListIcon as={InfoIcon} color="#FFD700" />
                   HGT: {user.hgt}
                 </ListItem>
               )}
-              {["faculty", "staff"].includes(user.role) && (
+              {["permanent_employee", "cos_employee"].includes(user.role) && (
                 <ListItem>
                   <ListIcon as={InfoIcon} color="#FFD700" />
                   WGT: {user.wgt}
                 </ListItem>
               )}
-              {["faculty", "staff"].includes(user.role) && (
+              {["permanent_employee", "cos_employee"].includes(user.role) && (
                 <ListItem>
                   <ListIcon as={InfoIcon} color="#FFD700" />
                   SSS: {user.sss}
                 </ListItem>
               )}
-              {["faculty", "staff"].includes(user.role) && (
+              {["permanent_employee", "cos_employee"].includes(user.role) && (
                 <ListItem>
                   <ListIcon as={InfoIcon} color="#FFD700" />
                   TIN: {user.tin}
@@ -400,7 +400,7 @@ const InfoProfile = ({}) => {
               />
             </FormControl>
 
-            {["faculty", "staff"].includes(user.role) && (
+            {["permanent_employee", "cos_employee"].includes(user.role) && (
               <FormControl isRequired>
                 <FormLabel>Position:</FormLabel>
                 <Input
@@ -412,7 +412,7 @@ const InfoProfile = ({}) => {
                 />
               </FormControl>
             )}
-            {["faculty", "staff"].includes(user.role) && (
+            {["permanent_employee", "cos_employee"].includes(user.role) && (
               <FormControl isRequired>
                 <FormLabel>Designation:</FormLabel>
                 <Input
@@ -424,7 +424,7 @@ const InfoProfile = ({}) => {
                 />
               </FormControl>
             )}
-            {["faculty", "staff"].includes(user.role) && (
+            {["permanent_employee", "cos_employee"].includes(user.role) && (
               <FormControl isRequired>
                 <FormLabel>HGT:</FormLabel>
                 <Input
@@ -477,7 +477,7 @@ const InfoProfile = ({}) => {
               </>
             )}
 
-            {["faculty", "staff"].includes(user.role) && (
+            {["permanent_employee", "cos_employee"].includes(user.role) && (
               <FormControl isRequired pb={3}>
                 <FormLabel>WGT:</FormLabel>
                 <Input
@@ -489,7 +489,7 @@ const InfoProfile = ({}) => {
                 />
               </FormControl>
             )}
-            {["faculty", "staff"].includes(user.role) && (
+            {["permanent_employee", "cos_employee"].includes(user.role) && (
               <FormControl isRequired pb={3}>
                 <FormLabel>SSS:</FormLabel>
                 <Input
@@ -501,7 +501,7 @@ const InfoProfile = ({}) => {
                 />
               </FormControl>
             )}
-            {["faculty", "staff"].includes(user.role) && (
+            {["permanent_employee", "cos_employee"].includes(user.role) && (
               <FormControl isRequired pb={3}>
                 <FormLabel>TIN:</FormLabel>
                 <Input

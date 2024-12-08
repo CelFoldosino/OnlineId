@@ -19,11 +19,12 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import StudentListTable from "./StudentListTable";
+import InstructorListTable from "./PermanentTable";
+import StaffListTable from "./CosTable";
 import { DeleteAccountModal } from "./crud_prelist/DeleteAccount";
 import ViewAccount from "./crud_prelist/ViewAccount";
 import EditAccount from "./crud_prelist/EditAccount";
-import InstructorListTable from "./InstructorListTable";
-import StaffListTable from "./StaffListTable";
+
 import { AddIcon, AttachmentIcon } from "@chakra-ui/icons";
 import GenerateAccount from "./crud_prelist/GenerateAccount";
 import { useData } from "../../../../context/FetchAccountContext";

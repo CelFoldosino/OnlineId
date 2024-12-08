@@ -33,10 +33,10 @@ const FacultyIdLost = ({
 }) => {
   const { data, setData } = useData();
 
-  const facultyPerPage = 4;
+  const facultyPerPage = 50;
 
   const filteredFacultyId = data.filter(
-    (account) => account.role === "faculty" && account.affidavit
+    (account) => account.role === "permanent_employee" && account.affidavit
   );
   const pageCount = Math.ceil(filteredFacultyId.length / facultyPerPage);
 

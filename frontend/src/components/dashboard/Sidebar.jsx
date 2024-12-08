@@ -2,7 +2,7 @@
 
 import { Box, Divider, Flex, Text, VStack } from "@chakra-ui/react";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../context/Auth";
 import { useData } from "../context/FetchAccountContext";
 import useAuthStore from "../../modules/auth";
@@ -14,19 +14,29 @@ export const SideBar = ({ isOpen, renderLinks, renderUserLinks }) => {
     return data.find((d) => d._id === userId);
   };
   const userLogin = accountLogin();
+  useEffect(() => {
+    if (userLogin) {
+
+      console.log(userLogin, 'asda')
+    }
+  }, [])
   return (
     <Box bg="blue.600" color="white" h="100vh" w="100%">
       <Box>
         <Box p={5}>
           <Text fontSize="1.5rem">PHILSCA</Text>
           <Text>
-            {userLogin?.role === "admin"
+            {userLogin?.role === "admin" && userLogin.roleLevel ==='1'
               ? "Administrator"
-              : userLogin?.role === "student"
+              : userLogin?.role === 'admin' && userLogin.roleLevel === '2'
+              ? 'Head'
+              : userLogin?.role === 'admin' && userLogin.roleLevel === '3'
+              ? 'Sub Staff'
+              : userLogin?.role === "student" && userLogin.roleLevel === '4'
               ? "Student"
-              : userLogin?.role === "faculty" || userLogin?.role === "staff"
-              ? "Employee"
-              : ""}
+              : userLogin?.role === "permanent_employee" && userLogin.roleLevel === '4' 
+              ? "Permanent Employee"
+              :  userLogin?.role === "cos_employee" && userLogin.roleLevel === '4' ? 'COS Employee' : ''}
           </Text>
         </Box>
         <Divider borderColor="whiteAlpha.300" />
@@ -37,7 +47,7 @@ export const SideBar = ({ isOpen, renderLinks, renderUserLinks }) => {
           {data
             .filter(
               (user) =>
-                ["student", "faculty", "staff"].includes(user.role) &&
+                ["student", "permanent_employee", "cos_employee"].includes(user.role) &&
                 user._id === userId
             )
             .map(renderUserLinks)}

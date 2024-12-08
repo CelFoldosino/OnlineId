@@ -34,7 +34,7 @@ const StaffListTable = ({
 }) => {
   const { data, loading, setData } = useData();
   const [currentPage, setCurrentPage] = useState(0);
-  const staffPerPage = 4;
+  const staffPerPage = 50;
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);

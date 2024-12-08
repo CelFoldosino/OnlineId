@@ -90,6 +90,14 @@ export default function StudIDList() {
     setSelectedProgram(program);
   }, []);
 
+  // const handleDeleteIdList = (accountId) => {
+  //   const account = data.find((acc) => acc._id === accountId);
+  //   if (account) {
+  //     setDeleteAccount({ ...account }); // Make sure to include all fields from account
+  //     onDeleteOpen();
+  //   }
+  // };
+
   return (
     <>
       <Box mt={10} mx={10} mb={2}>

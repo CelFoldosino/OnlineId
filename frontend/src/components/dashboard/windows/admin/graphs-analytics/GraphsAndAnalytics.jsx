@@ -18,8 +18,8 @@ const GraphsAndAnalytics = () => {
   const { data } = useData();
 
   const filteredStudents = data.filter((account) => account.role === "student");
-  const filteredFaculty = data.filter((account) => account.role === "faculty");
-  const filteredStaff = data.filter((account) => account.role === "staff");
+  const filteredFaculty = data.filter((account) => account.role === "permanent_employee");
+  const filteredStaff = data.filter((account) => account.role === "cos_employee");
   const filteredIssuedId = data.filter(
     (account) => account.isIdIssued === true
   );

@@ -28,7 +28,7 @@ const StudentIdLost = ({
   handlePageClick,
 }) => {
   const { data, setData } = useData();
-  const studentsPerPage = 6;
+  const studentsPerPage = 50;
 
   // Filter students based on role
   const filteredStudentsWithAffidavit = data.filter(

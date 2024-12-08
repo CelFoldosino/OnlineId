@@ -52,35 +52,43 @@ const AccountTempoId = () => {
           border="2px"
           borderRadius="lg"
           mb={4}
-          w="320px"
+          
+         w="207px"
+              h='326px'
           p={0}
         >
           <CardBody p={0}>
             <div>
               <div className="flex flex-col items-center">
-                {user.role === "student" || user.role === "staff" ? (
+                {user.role === "student" || user.role === "cos_employee" ? (
                   <>
-                    <p className="text-[.9rem] text-white">
-                      Republic of the Philippines
-                    </p>
+                  <p className="text-[.8rem] text-white">
+                    Republic of the Philippines
+                  </p>
+                {user.role === 'student' ? (<><p className=" id-header  text-[.812rem]">
+                    PHILIPPINE STATE COLLEGE <span className="block">OF AERONAUTICS</span>
+                  </p></>) : user.role === 'cos_employee' ? (<>
+                    <p className=" id-header  text-[.5rem]">
+                    PHILIPPINE STATE COLLEGE OF AERONAUTICS
+                  </p>
+                  </>) : (<> </>)}
+                  
 
-                    <p className="text-[.9rem] text-yellow-300">
-                      PHILIPPINE STATE COLLEGE OF AERONAUTICS
-                    </p>
+                  <p className="text-white text-[.6rem] pb-2">
+                    Piccio Garden, Villamor. Pasay City
+                  </p>
+                </>
 
-                    <p className="text-white text-[.9rem] pb-2">
-                      Piccio Garden, Villamor. Pasay City
-                    </p>
-                  </>
+                  
                 ) : (
                   <>
-                    <p className="text-[.9rem] text-white">
-                      Republic of the Philippines
-                    </p>
-                    <p className="text-[.9rem] text-yellow-300">
-                      PHILIPPINE STATE COLLEGE OF AERONAUTICS
-                    </p>
-                  </>
+                  <p className="text-[.6rem]  text-white">
+                    Republic of the Philippines
+                  </p>
+                  <p className="text-[.5rem] id-header">
+                    PHILIPPINE STATE COLLEGE OF AERONAUTICS
+                  </p>
+                </>
                 )}
               </div>
 
@@ -96,56 +104,53 @@ const AccountTempoId = () => {
                   >
                     {user.role === "student" ? (
                       <>
-                        <Stack align="center">
-                          <Image
-                            src={logo}
-                            alt="Philsca Logo"
-                            boxSize="100px"
-                          />
-                          {user.role === "student" ? (
-                            <>
-                              {" "}
-                              <Text fontSize="md" color="yellow.400">
-                                SY-2023-2024
-                              </Text>
-                            </>
-                          ) : (
-                            <></>
-                          )}
-                        </Stack>
-                      </>
+                      <Stack align="center">
+                        <Image
+                          src={logo}
+                          alt="Philsca Logo"
+                          boxSize="100px"
+                        />
+                        {user.role === "student" ? (
+                          <>
+                            
+                            <p className="text-yellow-300 text-[.8rem]">SY-2023-2024</p>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                      </Stack>
+                    </>
                     ) : (
                       <></>
                     )}
 
                     {user.role === "student" ? (
-                      <>
-                        <Stack align="center">
-                          {user.picture === "" ? (
-                            <Avatar
-                              src={user.picture}
-                              alt="profile"
-                              boxSize="100px"
-                            />
-                          ) : (
-                            <Image
-                              src={user.picture}
-                              alt="profile"
-                              boxSize="150px"
-                              mr={4}
-                            />
-                          )}
-                          {user.role === "student" ? (
-                            <>
-                              <Text fontSize="sm" color="yellow.400">
-                                1st Sem. / 2nd Sem.
-                              </Text>
-                            </>
-                          ) : (
-                            <></>
-                          )}
-                        </Stack>
-                      </>
+                     <>
+                     <Stack align="center" justify="center">
+                       {user.picture === "" ? (
+                         <Avatar
+                           src={user.picture}
+                           alt="profile"
+                           boxSize="100px"
+                         />
+                       ) : (
+                         <Image
+                           src={user.picture}
+                           alt="profile"
+                           boxSize="100px"
+                          
+                         />
+                       )}
+                       {user.role === "student" ? (
+                         <>
+                           
+                           <p className="text-yellow-300 text-[.7rem]">1st Sem./2nd Sem.</p>
+                         </>
+                       ) : (
+                         <></>
+                       )}
+                     </Stack>
+                   </>
                     ) : (
                       <></>
                     )}
@@ -154,7 +159,7 @@ const AccountTempoId = () => {
               ) : (
                 <></>
               )}
-              {user.role === "staff" ? (
+              {user.role === "cos_employee" ? (
                 <>
                   <Stack
                     direction="row"
@@ -164,143 +169,163 @@ const AccountTempoId = () => {
                     p="3"
                     w="full"
                   >
-                    <>
-                      <Stack align="center">
-                        <Image src={logo} alt="Philsca Logo" boxSize="100px" />
-                      </Stack>
-                    </>
+                     <>
+                          <Stack align="center">
+                            <Image
+                              src={logo}
+                              alt="Philsca Logo"
+                              boxSize="100px"
+                            />
+                          </Stack>
+                        </>
 
-                    <>
-                      <Stack align="center">
-                        {user.picture === "" ? (
-                          <Avatar
-                            src={user.picture}
-                            alt="profile"
-                            boxSize="100px"
-                          />
-                        ) : (
-                          <Image
-                            src={user.picture}
-                            alt="profile"
-                            boxSize="150px"
-                            mr={4}
-                          />
-                        )}
-                      </Stack>
-                    </>
+                        <>
+                          <Stack align="center">
+                            {user.picture === "" ? (
+                              <Avatar
+                                src={user.picture}
+                                alt="profile"
+                                boxSize="100px"
+                              />
+                            ) : (
+                              <Image
+                                src={user.picture}
+                                alt="profile"
+                                boxSize="100px"
+                                mr={4}
+                              />
+                            )}
+                          </Stack>
+                        </>
                   </Stack>
                 </>
               ) : (
                 <></>
               )}
 
-              {user.role === "faculty" ? (
+              {user.role === "permanent_employee" ? (
                 <>
                   {" "}
                   <div>
-                    <div className="flex justfiy-between">
-                      <div className="h-[70px] w-[70px]">
-                        <img
-                          src={logo}
-                          alt="Philsca Logo"
-                          className="w-full h-full"
-                        />
+                        <div className="flex justfiy-between px-2">
+                          <div className="h-[50px] w-[40px]">
+                            <img
+                              src={logo}
+                              alt="Philsca Logo"
+                              className="w-full h-full"
+                            />
+                          </div>
+                          <div className="mt-5 text-[.6rem] text-white">
+                            <p>Piccio Garden, Villamor. Pasay City</p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between gap-2 px-3">
+                          <div >
+                            <img
+                              src={PhilscaLogoCircle}
+                              alt=""
+                              className="h-[90px] w-full"
+                            />
+                          </div>
+                          <div >
+                            {user.picture === "" ? (
+                              <Avatar
+                                src={user.picture}
+                                alt="profile"
+                                boxSize="90px"
+                              />
+                            ) : (
+                              <img
+                                src={user.picture}
+                                alt="profile"
+                                className="h-[90px] w-80px]"
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex flex-col justify-center items-center text-white ">
+                          
+                          {user.firstname === "" &&
+                          user.lastname === "" ? (
+                            <p class="text-white text-[.9rem]">N/A</p>
+                          ) : (
+                            
+
+                            <h3 className="text-[.9rem]" 
+                            
+                          >{`${user.firstname} ${user.middlename} ${user.lastname}`}</h3>
+                          )}
+                          <p class="text-yellow-300 text-[.7rem]">
+                            Employee Name
+                          </p>
+                          {user.schoolid === "" ? (
+                            <p class="text-white text-[.9rem]">N/A</p>
+                          ) : (
+                            
+                            <p className="text-[.9rem]">
+                            {user.schoolid}
+                          </p>
+                          )}
+                          <p class="text-yellow-300 text-[.7rem]">ID Number</p>
+                          {user.position === "" ? (
+                            <p class="text-white text-[.9rem]">N/A</p>
+                          ) : (
+                           
+                            <p className=" text-[.9rem]">
+                            {user.position}
+                          </p>
+                          )}
+                          <p class="text-yellow-300 text-[.7rem]">Positions</p>
+                          {user.designation === "" ? (
+                            <p class="text-white text-[.9rem]">N/A</p>
+                          ) : (
+                            
+                            <p className="text-[.9rem]">{user.designation}</p>
+                          )}
+                          <p class="text-yellow-300 text-[.7rem]">
+                            Designation
+                          </p>
+                        </div>
                       </div>
-                      <div className="mt-5 text-[.9rem] text-white">
-                        <p>Piccio Garden, Villamor. Pasay City</p>
-                      </div>
-                    </div>
-                    <div className="flex justify-between  ml-5 px-3">
-                      <div className="h-[100px] ">
-                        <img
-                          src={PhilscaLogoCircle}
-                          alt=""
-                          className="h-[100px] w-full"
-                        />
-                      </div>
-                      <div className="h-[130px]justify-end">
-                        {user.picture === "" ? (
-                          <Avatar
-                            src={user.picture}
-                            alt="profile"
-                            boxSize="100px"
-                          />
-                        ) : (
-                          <img
-                            src={user.picture}
-                            alt="profile"
-                            className="h-[130px] w-[130px]"
-                          />
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex flex-col justify-center items-center  mt-3">
-                      {user.firstname === "" && user.lastname === "" ? (
-                        <p class="text-white">N/A</p>
-                      ) : (
-                        <Heading
-                          size="md"
-                          color="white"
-                        >{`${user.firstname} ${user.middlename} ${user.lastname}`}</Heading>
-                      )}
-                      <p class="text-yellow-300 text-[.9rem]">Employee Name</p>
-                      {user.schoolid === "" ? (
-                        <p class="text-white ">N/A</p>
-                      ) : (
-                        <Text fontSize="lg" color="white">
-                          {user.schoolid}
-                        </Text>
-                      )}
-                      <p class="text-yellow-300 text-[.9rem]">ID Number</p>
-                      {user.position === "" ? (
-                        <p class="text-white">N/A</p>
-                      ) : (
-                        <Text fontSize="lg" color="white">
-                          {user.position}
-                        </Text>
-                      )}
-                      <p class="text-yellow-300 text-[.9rem]">Positions</p>
-                      {user.designation === "" ? (
-                        <p class="text-white ">N/A</p>
-                      ) : (
-                        <Text fontSize="lg" color="white">
-                          {user.designation}
-                        </Text>
-                      )}
-                      <p class="text-yellow-300 text-[.9rem]">Designation</p>
-                    </div>
-                  </div>
                 </>
               ) : (
                 <></>
               )}
 
-              {user.role === "staff" ? (
+              {user.role === "cos_employee" ? (
                 <>
-                  <div className="flex flex-col justify-center items-center  bg-white text-black">
-                    {user.firstname === "" || user.lastname === "" ? (
-                      <p>N/A</p>
-                    ) : (
-                      <p className="uppercase text-[1.1rem] font-bold">{`${user.firstname} ${user.middlename} ${user.lastname}`}</p>
-                    )}
-                    <p class="text-black text-[.9rem]">EMPLOYEE NAME</p>
-                    {user.schoolid === "" ? (
-                      <p>N/A</p>
-                    ) : (
-                      <p className="uppercase text-[1.1rem] font-bold">
-                        {user.schoolid}
-                      </p>
-                    )}
-                    <p class="text-black text-[.9rem]">EMPLOYEE NUMBER</p>
-                    {user.position === "" ? (
-                      <p>N/A</p>
-                    ) : (
-                      <p className="uppercase text-[1.1rem] font-bold">
-                        {user.position}
-                      </p>
-                    )}
-                    <p class="text-black text-[.9rem]">POSITION</p>
-                  </div>
+                  <div className="flex flex-col justify-center items-center custom-bg text-black h-[146px] ">
+                        <div className="text-content">
+                          {!user.firstname || !user.lastname ? (
+                            <p className="text-[.9rem]">N/A</p>
+                          ) : (
+                            <p className="uppercase text-[.9rem] font-bold">
+                              {`${user.firstname} ${user.middlename} ${user.lastname}`}
+                            </p>
+                          )}
+                          <p className="text-black text-[.7rem]">
+                            EMPLOYEE NAME
+                          </p>
+                          {user.schoolid === "" ? (
+                            <p className="text-[.9rem]">N/A</p>
+                          ) : (
+                            <p className="uppercase text-[.9rem] font-bold">
+                              {user.schoolid}
+                            </p>
+                          )}
+                          <p className="text-black text-[.7rem]">
+                            EMPLOYEE NUMBER
+                          </p>
+                          {user.position === "" ? (
+                            <p className="text-[.9rem]">N/A</p>
+                          ) : (
+                            <p className="uppercase text-[.9rem] font-bold">
+                              {user.position}
+                            </p>
+                          )}
+                          <p className="text-black text-[.7rem]">POSITION</p>
+                        </div>
+                      </div>
                 </>
               ) : (
                 <></>
@@ -308,47 +333,38 @@ const AccountTempoId = () => {
 
               {user.role === "student" ? (
                 <>
-                  <Stack
-                    align="center"
-                    justify="center"
-                    bg="white"
-                    p="10px"
-                    rounded="lg"
-                    borderColor="yellow.400"
-                    w="80"
-                    mb={3}
-                  >
+                   <div className="border border-orange-500 flex flex-col items-center justify-center m-2 bg-white font-bold">
                     {user.firstname === "" && user.lastname === "" ? (
-                      <Text>N/A</Text>
-                    ) : (
-                      <Heading
-                        size="md"
-                        color="black"
-                      >{`${user.firstname} ${user.middlename} ${user.lastname}`}</Heading>
-                    )}
-
-                    {user.schoolid === "" ? (
-                      <Text>N/A</Text>
-                    ) : (
-                      <Text fontSize="lg" color="black">
-                        {user.schoolid}
-                      </Text>
-                    )}
-
-                    {user.role === "student" ? (
-                      <>
-                        {user.course === "" ? (
-                          <Text>N/A</Text>
+                          <p className="name">N/A</p>
                         ) : (
-                          <Text fontSize="lg" color="black">
-                            {user.course}
-                          </Text>
+                          <h3 className="name text-center"
+                            
+                          >{`${user.firstname} ${user.middlename} ${user.lastname}`}</h3>
                         )}
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                  </Stack>
+
+                        {user.schoolid === "" ? (
+                          <p className="school-id">N/A</p>
+                        ) : (
+                          <p className="school-id">
+                            {user.schoolid}
+                          </p>
+                        )}
+
+                        {user.role === "student" ? (
+                          <>
+                            {user.course === "" ? (
+                              <p className="program">N/A</p>
+                            ) : (
+                              <p className="program">
+                                {user.course}
+                              </p>
+                            )}
+                          </>
+                        ) : (
+                          <></>
+                        )}
+
+                    </div>
                 </>
               ) : (
                 <></>
@@ -358,175 +374,184 @@ const AccountTempoId = () => {
         </Card>
       </div>
       {/* back */}
-      <Card maxW="sm" border="2px" borderRadius="lg" w="320px">
-        {user.role === "student" ? (
-          <>
-            <CardBody px={2}>
-              <div className="flex gap-3 pb-2 items-center">
-                <span className="text-[.9rem] font-[400]">DATE OF BIRTH: </span>
-                <p className="font-bold">
-                  {user.birthdate ? formattedDate : "N/A"}
-                </p>
-              </div>
-              <div className="border-2 border-black">
-                <div className="bg-black text-white">
-                  <p className="px-2">IN CASE OF EMERGENCY PLS. NOTIFY</p>
-                </div>
-                <div className="px-2">
-                  <div className="flex gap-2">
-                    <p className=" font-[400]">Name: </p>
-                    <p className=" font-[600]">{user.contactperson || "N/A"}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <p className=" font-[400]">Address: </p>
-                    <p className=" font-[600]">{user.address || "N/A"}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <p className=" font-[400]">Tel. No.: </p>
-                    <p className=" font-[600]">
-                      {user.contactpersonnumber
-                        ? formatPhoneNumber(user.contactpersonnumber)
-                        : "N/A"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="pt-[1.5rem] text-[1.2rem] font-[600] text-center">
-                IMPORTANT
+      
+      <Card maxW="sm" border="2px" borderRadius="lg" w="207px" h='326px'>
+  {user.role === "student" ? (
+    <>
+      <CardBody px={2}>
+        <div className="flex gap-2 pb-2 items-center text-[.6rem] font-bold" id="birthDate">
+          <span className=" ">
+            DATE OF BIRTH:{" "}
+          </span>
+          <p>
+            {user.birthdate ? formattedDate : "N/A"}
+          </p>
+        </div>
+        <div className="border-2 border-black " id="case-emergency">
+          <div className="bg-black text-white p-1">
+            <p className=" text-[.6rem] ">IN CASE OF EMERGENCY PLS. NOTIFY</p>
+          </div>
+          <div className="px-1 text-[.7rem] ">
+            <div className="flex gap-1 font-bold">
+              <p>Name: </p>
+              <p className="text-[.6rem]">
+                {user.contactperson || "N/A"}
               </p>
-              <p className="px-2 font-[500] pb-[3.5rem]">
-                THIS CARD IS NON-TRANSFERABLE IT MUST BE WORN WHILE INSIDE THE
-                CAMPUS PREMISES.
+            </div>
+            <div className="flex gap-1 font-bold ">
+              <p >Address: </p>
+              <p className="text-[.6rem]">
+                {user.address || "N/A"}
               </p>
-              <div className="flex flex-col">
-                <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[70px]">
-                  <div className="absolute top-0 h-[60px]">
-                    <img
-                      src={user.signature}
-                      alt="signature"
-                      className="h-full w-full"
-                    />
-                  </div>
-                  <div className="w-full absolute bottom-0">
-                    <p className="signature text-[.700rem]">SIGNATURE</p>
-                  </div>
-                </div>
-
-                <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[90px]">
-                  <div className="absolute top-0 h-[60px]">
-                    <img
-                      src={RegistrarSignature}
-                      alt="registrar signature"
-                      className="h-full w-full"
-                    />
-                  </div>
-                  <div className="w-full absolute bottom-0">
-                    <p className="font-bold">MR. DARBY P ESBERANZATE</p>
-                    <p className="signature-registrar text-[.700rem] bottom-0">
-                      College Registrar
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </CardBody>
-          </>
-        ) : (
-          <CardBody px={2}>
-            <div class="grid grid-cols-3 border-2 border-black w-full">
-              <div class="border-r-2 border-black text-center">
-                <p className="text-left text-[.9rem] font-bold">HEIGHT</p>
-                <p> {user.hgt ? user.hgt : "N/A"}</p>
-              </div>
-              <div class="border-r-2 border-black text-center">
-                <p className="text-left text-[.9rem] font-bold pl-1">
-                  BIRTHDATE
-                </p>
-                <p> {user.birthdate ? formattedDate : "N/A"}</p>
-              </div>
-              <div class="text-center">
-                <p className="text-left text-[.9rem] font-bold pl-1">WEIGHT</p>
-                <p> {user.wgt ? user.wgt : "N/A"}</p>
-              </div>
             </div>
-            <div className="border-2 border-black">
-              <p className="px-2">IN CASE OF EMERGENCY PLS. NOTIFY</p>
-
-              <div className="px-2">
-                <div className="flex gap-2">
-                  <p className=" font-[400]">Name: </p>
-                  <p className=" font-[600]">{user.contactperson || "N/A"}</p>
-                </div>
-                <div className="flex gap-2">
-                  <p className=" font-[400]">Address: </p>
-                  <p className=" font-[600]">{user.address || "N/A"}</p>
-                </div>
-                <div className="flex gap-2">
-                  <p className=" font-[400]">Tel. No.: </p>
-                  <p className=" font-[600]">
-                    {user.contactpersonnumber
-                      ? formatPhoneNumber(user.contactpersonnumber)
-                      : "N/A"}
-                  </p>
-                </div>
-              </div>
+            <div className="flex gap-1 font-bold">
+              <p >Tel. No.: </p>
+              <p className="text-[.6rem]">
+                {user.contactpersonnumber
+                  ? formatPhoneNumber(user.contactpersonnumber)
+                  : "N/A"}
+              </p>
             </div>
-            <div className="flex">
-              <div className="w-[50%] p-1 text-[.9rem] font-[500]">
-                THIS IS TO CERTIFY THAT THE PERSON WHOSE PHOTO AND SIGNATURE
-                APPEAR ON THIS CARD IS AN EMPLOYEE OF THIS COLLEGE.
-              </div>
-              <div className="w-[50%]">
-                <div class="flex flex-col border-2 border-black w-full">
-                  <div class=" border-b border-black">
-                    <p class="text-left font-bold">GSIS</p>
-                    <p className="text-center font-[600]">
-                      {user.sss || "N/A"}
-                    </p>
-                  </div>
+          </div>
+        </div>
 
-                  <div>
-                    <p class="text-left font-bold">TIN</p>
-                    <p className="text-center font-[600]">
-                      {user.tin || "N/A"}
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <p className="pt-[.8rem] text-[.9rem] font-[600] text-center" id="important">
+          IMPORTANT
+        </p>
+        <p className="px-1 text-[.6rem] font-[600] " id="content">
+          THIS CARD IS NON-TRANSFERABLE IT MUST BE WORN WHILE INSIDE
+          THE CAMPUS PREMISES.
+        </p>
+        <div className="flex flex-col">
+          <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[50px]">
+            <div className="absolute top-0 h-[40px]">
+              <img
+                src={user.signature}
+                alt="signature"
+                className="h-full w-full"
+              />
             </div>
-            <div className="flex flex-col">
-              <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[70px]">
-                <div className="absolute top-0 h-[60px]">
-                  <img
-                    src={user.signature}
-                    alt="signature"
-                    className="h-full w-full"
-                  />
-                </div>
-                <div className="w-full absolute bottom-0">
-                  <p className="signature text-[.700rem]">SIGNATURE</p>
-                </div>
-              </div>
+            <div className="w-full absolute bottom-0">
+              <p className="signature ">SIGNATURE</p>
+            </div>
+          </div>
 
-              <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[90px]">
-                <div className="absolute top-0 h-[60px]">
-                  <img
-                    src={RegistrarSignature}
-                    alt="registrar signature"
-                    className="h-full w-full"
-                  />
-                </div>
-                <div className="w-full absolute bottom-0">
-                  <p className="font-bold">DR. MARWIN M. DELACRUZ</p>
-                  <p className="signature-registrar text-[.6rem] bottom-0">
-                    COLLEGE PRESIDENT
-                  </p>
-                </div>
-              </div>
+          <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[60px]">
+            <div className="absolute top-0 h-[40px]">
+              <img
+                src={RegistrarSignature}
+                alt="registrar signature"
+                className="h-full w-full"
+              />
             </div>
-          </CardBody>
-        )}
-      </Card>
+            <div className="w-full absolute bottom-0">
+              <p className="font-bold text-[.7rem]">MR. DARBY P ESBERANZATE</p>
+              <p className="signature-registrar  bottom-0">
+                College Registrar
+              </p>
+            </div>
+          </div>
+        </div>
+      </CardBody>
+    </>
+  ) : (
+    <CardBody px={2}>
+      <div className="grid grid-cols-3 border-2 border-black w-full text-[.5rem] " id="personnel-back-card">
+        <div className="border-r-2 border-black text-center">
+          <p className="text-left  font-bold">HEIGHT</p>
+          <p className="text-[.7rem]"> {user.hgt ? user.hgt : "N/A"}</p>
+        </div>
+        <div className="border-r-2 border-black text-center">
+          <p className="text-left  font-bold pl-1">
+            BIRTHDATE
+          </p>
+          <p> {user.birthdate ? formattedDate : "N/A"}</p>
+        </div>
+        <div className="text-center">
+          <p className="text-left  font-bold pl-1 ">
+            WEIGHT
+          </p>
+          <p className="text-[.7rem]"> {user.wgt ? user.wgt : "N/A"}</p>
+        </div>
+      </div>
+      <div className="border-2 border-black font-[600] h-[80px]"  id="personnel-back-card" >
+        <p className="px-1 text-[.7rem]">In case of emergency pls., notify:</p>
+
+        <div className="px-1 text-[.6rem]">
+          <div className="flex gap-2">
+            <p >Name: </p>
+            <p className="text-[.6rem]">
+              {user.contactperson || "N/A"}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <p >Address: </p>
+            <p className="text-[.6rem]">
+              {user.address || "N/A"}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <p >Tel. No.: </p>
+            <p className="text-[.6rem]">
+              {user.contactpersonnumber
+                ? formatPhoneNumber(user.contactpersonnumber)
+                : "N/A"}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex font-[600]" id="personnel-back-card"  >
+        <div className="w-[50%] p-1 text-[.4rem]">
+          THIS IS TO CERTIFY THAT THE PERSON WHOSE PHOTO AND
+          SIGNATURE APPEAR ON THIS CARD IS AN EMPLOYEE OF THIS
+          COLLEGE.
+        </div>
+        <div className="w-[50%] text-[.5rem] ">
+          <div className="flex flex-col border-2 border-black w-full">
+            <div className=" border-b border-black">
+              <p className="text-left font-bold">GSIS</p>
+              <p className="text-center font-[600]">
+                {user.sss || "N/A"}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-left font-bold">TIN</p>
+              <p className="text-center font-[600]">
+                {user.tin || "N/A"}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[50px]">
+          <div className="absolute top-0 h-[40px]">
+            <img
+              src={user.signature}
+              alt="signature"
+              className="h-full w-full"
+            />
+          </div>
+          <div className="w-full absolute bottom-0">
+            <p className="signature">SIGNATURE</p>
+          </div>
+        </div>
+
+        <div className="text-center text-[.900rem]  relative flex flex-col items-center justify-center h-[60px]">
+          
+          <div className="w-full absolute bottom-0">
+            <p className="font-bold text-[.7rem]">DR. MARWIN M. DELACRUZ</p>
+            <p className="signature-registrar text-[.6rem] bottom-0">
+              COLLEGE PRESIDENT
+            </p>
+          </div>
+        </div>
+      </div>
+    </CardBody>
+  )}
+</Card>
+
     </div>
   );
 };

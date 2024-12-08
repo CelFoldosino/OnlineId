@@ -36,7 +36,7 @@ const StudentId = ({
   handlePageClick,
 }) => {
   const { data, setData } = useData();
-  const studentsPerPage = 6;
+  const studentsPerPage = 50;
 
   // Filter students based on role
   const filteredStudentsId = data.filter(

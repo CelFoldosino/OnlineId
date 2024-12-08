@@ -320,8 +320,8 @@ const LogIn = () => {
                 }}
               >
                 <option value="student">Student</option>
-                <option value="faculty">Permanent Employee</option>
-                <option value="staff">COS Employee</option>
+                <option value="permanent_employee">Permanent Employee</option>
+                <option value="cos_employee">COS Employee</option>
                 <option value="admin">Admin</option>
               </Select>
             </FormControl>

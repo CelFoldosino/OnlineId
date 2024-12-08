@@ -57,7 +57,7 @@ const InstructorListTable = ({
     }
   };
 
-  const filteredFaculty = data.filter((account) => account.role === "faculty");
+  const filteredFaculty = data.filter((account) => account.role === "permanent_employee");
   const pageCount = Math.ceil(filteredFaculty.length / facultyPerPage);
 
   const displayFaculty = filteredFaculty

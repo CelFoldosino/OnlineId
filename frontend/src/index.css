@@ -17,6 +17,58 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.id-header {
+  font-family: serif;
+  text-align: center;
+  color: #FDE047;
+}
+.name {
+  font-family: arial;
+  font-size: 15px;
+}
+
+ .schoold-id, .program {
+  font-family: arial;
+  font-size: 14.4px;
+}
+
+.id-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#birthDate, #case-emergency, #important, #content, #personnel-back-card {
+  font-family: arial bold;
+}
+.custom-bg {
+  background-image: url("../src/assets/id-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 160%;
+  background-position: center calc(100%);
+  position: relative;
+}
+
+.custom-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.text-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -86,9 +138,11 @@ canvas {
 .signature {
   position: relative;
   display: inline-block;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   text-align: center;
+  font-family: arial bold;
+
   width: 70%;
 }
 
@@ -103,9 +157,11 @@ canvas {
 .signature-registrar {
   position: relative;
   display: inline-block;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   text-align: center;
+  font-family: arial bold;
+
   width: 70%;
 }
 .signature-registrar::before {

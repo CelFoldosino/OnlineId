@@ -27,10 +27,10 @@ const StaffIdLost = ({
   handlePageClick,
 }) => {
   const { data, setData } = useData();
-  const staffPerPage = 6;
+  const staffPerPage = 50;
 
   const filteredStaffId = data.filter(
-    (account) => account.role === "staff" && account.affidavit
+    (account) => account.role === "cos_employee" && account.affidavit
   );
   const pageCount = Math.ceil(filteredStaffId.length / staffPerPage);
 

@@ -33,7 +33,7 @@ const StudentListTable = ({
 }) => {
   const { data, loading } = useData();
   const [currentPage, setCurrentPage] = useState(0);
-  const studentsPerPage = 6;
+  const studentsPerPage = 50;
 
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);

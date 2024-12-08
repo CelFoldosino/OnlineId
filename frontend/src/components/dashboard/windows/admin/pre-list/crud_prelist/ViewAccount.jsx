@@ -29,7 +29,7 @@ const ViewAccount = ({ isOpen, onClose, account }) => {
   const formattedDate = date ? date.toISOString().split("T")[0] : "";
 
   const students = account.role === "student";
-  const employee = ["faculty", "staff"].includes(account.role);
+  const employee = ["permanent_employee", "cos_employee"].includes(account.role);
   const staff = ["staff"].includes(account.role);
   const faculty = ["faculty"].includes(account.role);
 
@@ -41,9 +41,9 @@ const ViewAccount = ({ isOpen, onClose, account }) => {
           <p className="font-[500] text-[1.3rem]">
             {account.role === "student"
               ? "Student"
-              : account.role === "faculty"
-              ? "Faculty"
-              : "Staff"}{" "}
+              : account.role === "permanent_employee"
+              ? "Permanent Employee"
+              : "Cos Employee"}{" "}
             Details Overview
           </p>
           <p className="font-[400] opacity-70">PHILSCA PHILIPPINES</p>
