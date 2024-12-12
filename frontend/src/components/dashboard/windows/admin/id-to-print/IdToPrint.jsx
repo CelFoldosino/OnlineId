@@ -63,14 +63,15 @@ export default function IdModal({ isOpen, onClose, data, setData, student }) {
               border="2px"
               borderRadius="lg"
               mb={4}
-              w="645px"
-              h='1019px'
+              w="207px"
+              h='326px'
             >
               <CardBody p={0}>
                 <div>
                   <div className="flex flex-col items-center">
                     {student.role === "student" || student.role === "cos_employee" ? (
-                      <>
+                      <>  
+
                         <p className="text-[.8rem] text-white">
                           Republic of the Philippines
                         </p>
@@ -383,8 +384,8 @@ export default function IdModal({ isOpen, onClose, data, setData, student }) {
             </Card>
 
             {/* Back Card */}
-            <Card maxW="sm" border="2px" borderRadius="lg" w="645px"
-              h='1019px'>
+            <Card maxW="sm" border="2px" borderRadius="lg" w="207px"
+              h='326px'>
               {student.role === "student" ? (
                 <>
                   <CardBody px={2}>
