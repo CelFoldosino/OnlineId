@@ -64,7 +64,7 @@ export default function IdModal({ isOpen, onClose, data, setData, student }) {
               borderRadius="lg"
               mb={4}
               w="520px"
-              h='565px'
+              h='558px'
             >
               <CardBody p={0}>
                 <div>
@@ -385,7 +385,7 @@ export default function IdModal({ isOpen, onClose, data, setData, student }) {
 
             {/* Back Card */}
             <Card maxW="sm" border="2px" borderRadius="lg" w="520px"
-              h='565px'>
+              h='558px'>
               {student.role === "student" ? (
                 <>
                   <CardBody px={2}>
