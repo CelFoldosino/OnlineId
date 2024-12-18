@@ -32,6 +32,7 @@ import {
   FaIdCard,
   FaFileAlt,
   FaCog,
+  FaRegChartBar,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -58,7 +59,7 @@ const DashBoard = () => {
       const role = user.role;
 
       if (["permanent_employee", "cos_employee", "student"].includes(role)) {
-        setTab("reportid");
+        setTab("profile");
       } else {
         setTab("prelist");
       }
@@ -69,28 +70,24 @@ const DashBoard = () => {
 
   const renderLinks = (user) => {
     if (user.role === "admin" && user._id === userId) {
+      const links = [
+        { tabName: "prelist", label: "Accounts", icon: FaUsers },
+        { tabName: "studlistid", label: "ID List", icon: FaIdCard },
+        { tabName: "graphsandanalytics", label: "Status Panel", icon: FaTh },
+        {
+          tabName: "idlost",
+          label: "ID Lost Record",
+          icon: FaExclamationTriangle,
+        },
+        // Exclude the "Reports" tab only for admin users with levelRole 3
+        ...(user.roleLevel !== "3" && user.role === "admin"
+          ? [{ tabName: "reports", label: "Report", icon: FaRegChartBar }]
+          : []),
+      ];
+
       return (
         <React.Fragment key={user._id}>
-          {[
-            { tabName: "prelist", label: "Accounts", icon: FaUsers },
-            { tabName: "studlistid", label: "ID List", icon: FaIdCard },
-            {
-              tabName: "graphsandanalytics",
-              label: "Status Panel",
-              icon: FaTh,
-            },
-            {
-              tabName: "idlost",
-              label: "ID Lost Record",
-              icon: FaExclamationTriangle,
-            },
-            {
-              tabName: "reports",
-              label: "Report",
-              icon: FaExclamationTriangle,
-            },
-            // { tabName: "settings", label: "Settings", icon: FaCog },
-          ].map((item) => (
+          {links.map((item) => (
             <Link
               key={item.tabName}
               onClick={() => handleTabChange(item.tabName)}

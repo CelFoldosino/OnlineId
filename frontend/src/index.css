@@ -21,16 +21,15 @@ body {
 .id-header {
   font-family: serif;
   text-align: center;
-  color: #FDE047;
+  color: #fde047;
 }
 .name {
   font-family: arial;
-  font-size: 15px;
 }
 
- .schoold-id, .program {
+.schoold-id,
+.program {
   font-family: arial;
-  font-size: 14.4px;
 }
 
 .id-background {
@@ -39,7 +38,11 @@ body {
   background-repeat: no-repeat;
 }
 
-#birthDate, #case-emergency, #important, #content, #personnel-back-card {
+#birthDate,
+#case-emergency,
+#important,
+#content,
+#personnel-back-card {
   font-family: arial bold;
 }
 .custom-bg {
@@ -138,7 +141,6 @@ canvas {
 .signature {
   position: relative;
   display: inline-block;
-  font-size: 10px;
   font-weight: bold;
   text-align: center;
   font-family: arial bold;
@@ -157,7 +159,6 @@ canvas {
 .signature-registrar {
   position: relative;
   display: inline-block;
-  font-size: 10px;
   font-weight: bold;
   text-align: center;
   font-family: arial bold;

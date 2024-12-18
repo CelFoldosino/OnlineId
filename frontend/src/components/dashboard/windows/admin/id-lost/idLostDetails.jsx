@@ -87,16 +87,9 @@ const ModalAffidavit = ({ isOpen, handleCloseModal, account }) => {
             size="lg"
             width="fit-content"
           >
-            ID LOST IMAGE
+            AFFIDAVIT IMAGE
           </Tag>
-          <Tag
-            variant="subtle"
-            colorScheme="blue"
-            size="lg"
-            width="fit-content"
-          >
-            PHILSCA PHILIPPINES
-          </Tag>
+          
         </Flex>
         <div className="w-full px-10">
           <Link
@@ -108,6 +101,35 @@ const ModalAffidavit = ({ isOpen, handleCloseModal, account }) => {
             <Image
               w="100%"
               src={account.affidavit}
+              alt="Affidavit"
+              borderRadius={10}
+              maxW="100%"
+              objectFit="contain"
+            />
+          </Link>
+        </div>
+
+        <Flex mx={4} mt={10} mb={8} gap={5}>
+          <Tag
+            variant="subtle"
+            colorScheme="blue"
+            size="lg"
+            width="fit-content"
+          >
+            RECEIPT IMAGE
+          </Tag>
+          
+        </Flex>
+        <div className="w-full px-10">
+          <Link
+            href={account.receipt}
+            download={true}
+            isExternal
+            rel="noopener noreferrer"
+          >
+            <Image
+              w="100%"
+              src={account.receipt}
               alt="Affidavit"
               borderRadius={10}
               maxW="100%"

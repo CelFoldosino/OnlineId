@@ -36,6 +36,7 @@ const userSchema = new Schema({
     required: false,
   },
   affidavit: String,
+  receipt: String,
   schoolid: String,
 
   isIdIssued: Boolean,

@@ -20,7 +20,8 @@ import useAuthStore from "../modules/auth";
 import { useData } from "./context/FetchAccountContext";
 
 export const Upload = () => {
-  const [images, setImages] = useState([]);
+  const [affidavits, setAffidavits] = useState([]);
+  const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [allUsers, setAllUsers] = useState([]);
   const [message, setMessage] = useState("");
@@ -57,19 +58,45 @@ export const Upload = () => {
 
     try {
       let cloudName = "dijhxviqe";
-      for (const image of images) {
+
+      const affidavitUrls = [];
+      const receiptUrls = [];
+      // Upload images
+      for (const affidavit of affidavits) {
         const data = new FormData();
-        data.append("file", image);
+        data.append("file", affidavit);
         data.append("upload_preset", "uploadNews");
         const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
         const res = await axios.post(api, data);
         const secure_url = res.data.secure_url;
-        await fetchUploadImage(secure_url);
+        affidavitUrls.push(secure_url);
       }
 
-      setLoading(false);
+      // Upload signatures
+      for (const receipt of receipts) {
+        const data = new FormData();
+        data.append("file", receipt);
+        data.append("upload_preset", "uploadNews");
+        const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
+        const res = await axios.post(api, data);
+        const secure_url = res.data.secure_url;
+        receiptUrls.push(secure_url);
+      }
+
+      // Prepare data to send
+      const uploadData = {};
+      if (affidavitUrls.length > 0) {
+        uploadData.affidavits = affidavitUrls[0];
+      }
+      if (receiptUrls.length > 0) {
+        uploadData.receipts = receiptUrls[0];
+      }
+
+      // Send data to the server
+      await fetchUploadImage(uploadData);
+      setLoading(false);
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
@@ -79,9 +106,10 @@ export const Upload = () => {
     }
   };
 
-  const fetchUploadImage = async (imageSecureUrl) => {
+  const fetchUploadImage = async (uploadData) => {
     const body = {
-      affidavit: imageSecureUrl,
+      affidavit: uploadData.affidavits,
+      receipt: uploadData.receipts,
       message: message,
     };
 
@@ -105,31 +133,40 @@ export const Upload = () => {
   };
 
   const handleSubmit = async () => {
-    if (images.length < 1) {
-      toast({
-        title: "Please Fill All the Fields",
-        status: "warning",
-        duration: 2000,
-        isClosable: true,
-        position: "top",
-      });
-    } else {
+    try {
       await uploadFiles();
+
       toast({
-        title: "Uploaded",
+        title: "Updated Successfully",
         status: "success",
         duration: 2000,
         isClosable: true,
         position: "top",
       });
       setMessage("");
-      setImages("");
+      setAffidavits("");
+      setReceipts("");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "An error occurred",
+        description: "Failed to upload",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+        position: "bottom",
+      });
     }
   };
 
-  const handleFileChange = (e) => {
+  const handleAffidavit = (e) => {
     const selectedFiles = e.target.files[0];
-    setImages([selectedFiles]);
+    setAffidavits([selectedFiles]);
+  };
+
+  const handleRecepit = (e) => {
+    const selectedFiles = e.target.files[0];
+    setReceipts([selectedFiles]);
   };
 
   return (
@@ -188,7 +225,7 @@ export const Upload = () => {
               <div className="flex flex-col justify-center">
                 <div className="md:col-span-4 h-full">
                   <div className="flex flex-col justify-center items-center gap-3 p-5 border border-dashed border-orange-500 h-full w-full bg-gray-100 rounded-lg">
-                    {images.length > 0 ? (
+                    {affidavits.length > 0 ? (
                       <div
                         className="flex flex-col justify-center items-center gap-3 text-center h-[170px]"
                         style={{
@@ -198,10 +235,10 @@ export const Upload = () => {
                       >
                         <img
                           className="mx-auto max-h-[150px] rounded shadow-md"
-                          src={URL.createObjectURL(images[0])}
-                          alt={images[0].name}
+                          src={URL.createObjectURL(affidavits[0])}
+                          alt={affidavits[0].name}
                         />
-                        {images.map((image) => (
+                        {affidavits.map((image) => (
                           <p
                             key={image.name}
                             className="text-blue-600 font-semibold"
@@ -230,8 +267,50 @@ export const Upload = () => {
                         type="file"
                         accept="image/*"
                         id="actual-btn"
-                        onChange={handleFileChange}
+                        onChange={handleAffidavit}
                         className="hidden"
+                      />
+                    </label>
+                  </div>
+                  <div className="flex flex-col justify-center items-center border border-dashed border-orange-500 gap-3 p-5  h-full w-[100%] dark:bg-white">
+                    {receipts.length > 0 ? (
+                      <div
+                        className="flex flex-col justify-center items-center gap-3 text-center h-[170px]"
+                        style={{
+                          wordWrap: "break-word",
+                          wordBreak: "break-word",
+                        }}
+                      >
+                        <img
+                          className="mx-auto max-h-[150px]"
+                          src={URL.createObjectURL(receipts[0])}
+                          alt={receipts[0].name}
+                        />
+                        {receipts.map((rec) => {
+                          return <p key={rec.name}>{rec.name}</p>;
+                        })}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col justify-center items-center">
+                        <span className="text-[4rem]">
+                          <i className="fa-solid fa-folder-open"></i>
+                        </span>
+                        <p className="font-semibold text-center">
+                          Upload your receipts here
+                        </p>
+                      </div>
+                    )}
+
+                    <label
+                      htmlFor="signature-upload"
+                      className="custom-file-upload"
+                    >
+                      Choose Files
+                      <input
+                        type="file"
+                        accept="image/*"
+                        id="signature-upload"
+                        onChange={handleRecepit}
                       />
                     </label>
                   </div>

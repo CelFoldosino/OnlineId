@@ -10,40 +10,64 @@ import {
   Th,
   Thead,
   Tr,
-  Select,
   Button,
   TableContainer,
   useBreakpointValue,
   Container,
   Flex,
   Spinner,
+  Input,
+  FormLabel,
+  FormControl,
 } from "@chakra-ui/react";
 import ReactToPrint from "react-to-print";
 import { getIssuedId } from "../../../../api/issuedId";
 import { useData } from "../../../../context/FetchAccountContext";
+import ReactPaginate from "react-paginate";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 const Reports = () => {
   const [issuedID, setIssuedID] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [filterOption, setFilterOption] = useState("today");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+  
 
   const { data: users } = useData(); // Assuming useData fetches users including roles
   const tableRef = useRef(); // Reference for the table
+
+  const reportsPerPage = 14;
+
+  const pageCount = Math.ceil(filteredData.length / reportsPerPage);
+
+  const displayReports = filteredData.slice(
+    currentPage * reportsPerPage,
+    (currentPage + 1) * reportsPerPage
+  );
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
 
   const roleMap = {
     1: "Admin",
     2: "Head",
     3: "Sub-Staff",
-    // Add more role mappings as needed
   };
+
+  
+
 
   const fetchIssuedId = async () => {
     setIsLoading(true);
     try {
       const response = await getIssuedId();
       setIssuedID(response.data);
-      applyFilter(response.data, filterOption); // Apply initial filter
+      applyFilter(response.data, fromDate, toDate); 
+     
     } catch (error) {
       console.error("Failed to fetch issued IDs:", error);
     } finally {
@@ -55,34 +79,32 @@ const Reports = () => {
     fetchIssuedId();
   }, []);
 
-  const applyFilter = (data, filter) => {
-    const today = new Date();
-    let filtered = [];
+  useEffect(() => {
+    if (issuedID.length > 0 && !fromDate && !toDate) {
+      const sortedData = [...issuedID].sort((a, b) => new Date(a.issuedDate) - new Date(b.issuedDate));
+      const newFromDate = sortedData[0].issuedDate; // Earliest date in the data
+      const newToDate = sortedData[sortedData.length - 1].issuedDate; // Latest date in the data
+      setFromDate(newFromDate);
+      setToDate(newToDate);
+      applyFilter(issuedID, newFromDate, newToDate); // Filter data based on the new date range
+    }
+  }, [issuedID]);
 
-    if (filter === "today") {
-      filtered = data.filter(
-        (entry) =>
-          new Date(entry.issuedDate).toDateString() === today.toDateString()
-      );
-    } else if (filter === "last7days") {
-      const last7Days = new Date(today);
-      last7Days.setDate(today.getDate() - 7);
-      filtered = data.filter(
-        (entry) => new Date(entry.issuedDate) >= last7Days
-      );
-    } else if (filter === "thisMonth") {
-      const thisMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
-      filtered = data.filter(
-        (entry) => new Date(entry.issuedDate) >= thisMonthStart
-      );
+  const applyFilter = (data, fromDate, toDate) => {
+    let filtered = data;
+
+    if (fromDate) {
+      filtered = filtered.filter((entry) => new Date(entry.issuedDate) >= new Date(fromDate));
+    }
+    if (toDate) {
+      filtered = filtered.filter((entry) => new Date(entry.issuedDate) <= new Date(toDate));
     }
 
     setFilteredData(filtered);
   };
 
-  const handleFilterChange = (e) => {
-    setFilterOption(e.target.value);
-    applyFilter(issuedID, e.target.value); // Apply filter based on selection
+  const handleDateChange = () => {
+    applyFilter(issuedID, fromDate, toDate); // Apply filter when dates change
   };
 
   // Helper function to get the roleName by issuedBy
@@ -108,6 +130,7 @@ const Reports = () => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date().toLocaleDateString(undefined, options);
   };
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <>
@@ -124,17 +147,49 @@ const Reports = () => {
             bg="white"
             overflowX="auto" // Ensures the table is scrollable horizontally
           >
-            {/* Filter Dropdown (Hidden during printing using CSS) */}
-            <Select
-              value={filterOption}
-              onChange={handleFilterChange}
-              mb={4}
-              w="200px"
-            >
-              <option value="today">Today</option>
-              <option value="last7days">Last 7 Days</option>
-              <option value="thisMonth">This Month</option>
-            </Select>
+            {/* Date Range Picker */}
+            <Flex mb={4}>
+              <FormControl mr={4} w="200px">
+                <FormLabel htmlFor="fromDate">From</FormLabel>
+                <Input
+                  type="date"
+                  id="fromDate"
+                  value={fromDate}
+                  onChange={(e) => {
+                    const newFromDate = e.target.value;
+                    if (newFromDate <= toDate || !toDate) {
+                      setFromDate(newFromDate);
+                    }
+                  }}
+                  max={toDate || today} // Prevent "From" date from being later than "To" date
+                />
+              </FormControl>
+              <FormControl w="200px">
+                <FormLabel htmlFor="toDate">To</FormLabel>
+                <Input
+                  type="date"
+                  id="toDate"
+                  value={toDate}
+                  onChange={(e) => {
+                    const newToDate = e.target.value;
+                    if (newToDate >= fromDate || !fromDate) {
+                      setToDate(newToDate);
+                    }
+                  }}
+                  max={today} // Prevent "To" date from being in the future
+                />
+              </FormControl>
+              <Button
+                colorScheme="blue"
+                ml={4}
+                mt={6}
+               
+                onClick={handleDateChange}
+                disabled={!fromDate || !toDate}
+              >
+                Filter
+              </Button>
+            </Flex>
 
             {/* Table */}
             <Box ref={tableRef} mt={4}>
@@ -149,10 +204,12 @@ const Reports = () => {
               </Text>
               {/* Current Date Display */}
               <Text fontSize="lg" mb={4} textAlign="left" color="gray.700">
-                Date: {getCurrentDate()}
-              </Text>
+    Date Range:{" "}
+    {fromDate ? new Date(fromDate).toLocaleDateString() : "From Not Selected"} -{" "}
+    {toDate ? new Date(toDate).toLocaleDateString() : "To Not Selected"}
+  </Text>
               <TableContainer borderRadius="lg" boxShadow="md" variant="simple">
-                {filteredData.length > 0 ? (
+                {displayReports.length > 0 ? (
                   <Table size={tableSize}>
                     <Thead bg="blue.700">
                       <Tr>
@@ -163,7 +220,7 @@ const Reports = () => {
                       </Tr>
                     </Thead>
                     <Tbody>
-                      {filteredData.map((entry, index) => (
+                      {displayReports.map((entry, index) => (
                         <Tr key={index} bg="blue.100">
                           <Td>{entry.issuedDate}</Td>
                           <Td>{entry.totalIssued}</Td>
@@ -180,6 +237,21 @@ const Reports = () => {
                 )}
               </TableContainer>
             </Box>
+
+            {pageCount > 1 && (
+        <Box pt="1rem">
+          <ReactPaginate
+            pageCount={pageCount}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            onPageChange={handlePageClick}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            previousLabel={<ChevronLeftIcon />}
+            nextLabel={<ChevronRightIcon />}
+          />
+        </Box>
+      )}
 
             {/* ReactToPrint Button */}
             <Box mt={5} textAlign="center">

@@ -14,12 +14,7 @@ export const SideBar = ({ isOpen, renderLinks, renderUserLinks }) => {
     return data.find((d) => d._id === userId);
   };
   const userLogin = accountLogin();
-  useEffect(() => {
-    if (userLogin) {
 
-      console.log(userLogin, 'asda')
-    }
-  }, [])
   return (
     <Box bg="blue.600" color="white" h="100vh" w="100%">
       <Box>

@@ -1,6 +1,7 @@
 /** @format */
 
 const Account = require("../models/AccountModels"); // Adjust the path as needed
+const transporter = require("../config/emailConfig"); // Ensure this is configured correctly
 
 exports.issueId = async (req, res) => {
   const { userId, issuedBy } = req.body; // Get the issuedBy and userId from request body
@@ -13,6 +14,8 @@ exports.issueId = async (req, res) => {
       });
     }
 
+    const user = await Account.findById(userId)
+
     const updatedAccount = await Account.findByIdAndUpdate(
       userId,
       {
@@ -20,7 +23,7 @@ exports.issueId = async (req, res) => {
         isIdIssued: true,
         IssuedDate: Date.now(),
       },
-      { new: true } // Options: return the updated document and run validators
+      { new: true }
     );
 
     if (!updatedAccount) {
@@ -33,6 +36,17 @@ exports.issueId = async (req, res) => {
       message: "ID issued successfully",
       data: updatedAccount,
     });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: user.email, 
+      subject: "Get your ID ",
+      text: 'You"re ID is available now',
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    
   } catch (error) {
     console.error("Error issuing ID:", error);
     res.status(500).json({
@@ -42,9 +56,7 @@ exports.issueId = async (req, res) => {
   }
 };
 
-// Fetch issued IDs
-// Fetch issued IDs
-// Fetch issued IDs
+
 exports.fetchIssuedId = async (req, res) => {
   try {
     const result = await Account.aggregate([

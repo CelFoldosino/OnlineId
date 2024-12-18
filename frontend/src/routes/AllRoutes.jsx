@@ -11,7 +11,6 @@ import useAuthStore from "../modules/auth"; // Path to your authStore
 
 const AllRoutes = () => {
   const { user, logout } = useAuth();
-  const [isFaceRecognized, setIsFaceRecognized] = useState(true);
   const navigate = useNavigate();
   const fetchUserData = useAuthStore((state) => state.fetchUserData);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated());
@@ -27,9 +26,7 @@ const AllRoutes = () => {
       <Route
         path="/"
         element={isAuthenticated ? <Navigate to="/dashboard" /> : <LogIn />}
-        // element={<LogIn />}
       />
-      {/* <Route path="/" element={<LogIn />} /> */}
       <Route
         path="/dashboard"
         element={isAuthenticated ? <DashBoard /> : <Navigate to="/" />}

@@ -66,7 +66,6 @@ const InfoProfile = ({}) => {
   const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
   const { userId } = useAuthStore();
 
   const accountLogin = () => {
@@ -146,11 +145,6 @@ const InfoProfile = ({}) => {
 
       // Send data to the server
       await fetchUploadImage(uploadData);
-
-      // Redirect after a short delay
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
     } catch (error) {
       console.error("Upload failed:", error);
     }
@@ -189,7 +183,7 @@ const InfoProfile = ({}) => {
             el._id === user._id ? { ...el, ...updatedUser } : el
           );
           setData(updatedData);
-          onClose(); // Close the modal after successful update
+          // onClose(); // Close the modal after successful update
         }
       }
     } catch (error) {
@@ -197,7 +191,8 @@ const InfoProfile = ({}) => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
     try {
       await uploadFiles();
@@ -209,6 +204,7 @@ const InfoProfile = ({}) => {
         isClosable: true,
         position: "bottom",
       });
+
       onClose();
     } catch (error) {
       console.error(error);
@@ -668,6 +664,7 @@ const InfoProfile = ({}) => {
               colorScheme="green"
               onClick={handleSubmit}
               isLoading={isLoading}
+              type="button"
             >
               Update
             </Button>
